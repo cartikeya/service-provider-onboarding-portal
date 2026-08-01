@@ -15,9 +15,31 @@ const register = async (req, res) => {
     password: hashedpassword,
     role: role || "provider",
   });
+  const token = generateToken(user._id, user.role);
   return res.status(201).json({
     message: "user registered successfully",
+    token,
   });
 };
 
-module.exports = { register };
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: "User not found" });
+    }
+    const isMatch = bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: "Incorrect password" });
+    }
+    const token = generateToken(user._id, user.role);
+    return res.status(201).json({ message: "Logged in", token });
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Internal server error", error: error.message });
+  }
+};
+
+module.exports = { register, login };
