@@ -7,13 +7,15 @@ app.use(express.json());
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 const authRoutes = require("./src/routes/authRoutes");
+const providerRoutes = require("./src/routes/providerRoutes");
 
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MONGODB connected"))
   .catch((err) => console.log(err));
 
-app.use("/", authRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/provider", providerRoutes);
 
 app.get("/", (req, res) => {
   res.send("Server is running");

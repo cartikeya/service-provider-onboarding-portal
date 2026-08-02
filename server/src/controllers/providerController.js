@@ -1,6 +1,6 @@
 const User = require("../models/User");
 
-const getProviderPorfile = async (req, res) => {
+const getProviderProfile = async (req, res) => {
   try {
     const provider = await User.findById(req.user._id).select("-password");
     if (!provider) {
@@ -60,4 +60,4 @@ const updateProviderProfile = async (req, res) => {
   }
 };
 
-module.exports = { getProviderPorfile, updateProviderProfile };
+module.exports = { getProviderProfile, updateProviderProfile };
