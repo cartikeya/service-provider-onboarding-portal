@@ -21,7 +21,6 @@ function App() {
           <Route path="/provider/onboarding" element={<ProviderOnboarding />} />
         </Routes>
       </BrowserRouter>
-      <AdminDashboard />
     </>
   );
 }
