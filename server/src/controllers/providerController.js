@@ -33,7 +33,8 @@ const updateProviderProfile = async (req, res) => {
           "Your profile is already approved, contact support for changes",
       });
     }
-
+    provider.status = "pending";
+    provider.rejectionRemark = "";
     // Assign text fields
     if (name) provider.name = name;
     if (category)
