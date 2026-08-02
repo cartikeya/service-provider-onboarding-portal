@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import API from "../api/axios";
 import { Mail, Lock, ShieldAlert, ArrowRight } from "lucide-react";
+import GoogleAuthButton from "../components/common/GoogleAuthButton";
 
 export default function ProviderLogin() {
   const [email, setEmail] = useState("");
@@ -53,6 +54,17 @@ export default function ProviderLogin() {
             <span>{error}</span>
           </div>
         )}
+        <div className="mt-4">
+          <GoogleAuthButton role="provider" onError={(msg) => setError(msg)} />
+        </div>
+        <div className="relative my-6">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-200"></div>
+          </div>
+          <div className="relative flex justify-center text-xs uppercase">
+            <span className="bg-white px-2 text-gray-400">Or with email</span>
+          </div>
+        </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
           <div>

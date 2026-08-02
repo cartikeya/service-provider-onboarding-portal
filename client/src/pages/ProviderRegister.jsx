@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import API from "../api/axios";
+import GoogleAuthButton from "../components/common/GoogleAuthButton";
 import { User, Mail, Lock, ShieldAlert, ArrowRight } from "lucide-react";
 
 export default function ProviderRegister() {
@@ -54,6 +55,7 @@ export default function ProviderRegister() {
             listed.
           </p>
         </div>
+        <GoogleAuthButton role="provider" onError={(msg) => setError(msg)} />
 
         {error && (
           <div className="mb-6 p-3 bg-rose-50 border border-rose-200 rounded-xl flex items-center gap-2 text-xs text-rose-700">
