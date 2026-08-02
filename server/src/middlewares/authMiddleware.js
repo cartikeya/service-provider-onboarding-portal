@@ -15,9 +15,9 @@ const protect = async (req, res, next) => {
       if (!req.user) {
         return res.status(401).json({ message: "User no longer exists" });
       }
-      next();
+      return next();
     } catch (error) {
-      res.status(401).json({ message: "token failed" });
+      return res.status(401).json({ message: "token failed" });
     }
   }
   if (!token) {
@@ -29,7 +29,7 @@ const authorize = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return res.status(403).json({
-        message: `User role ${res.user.role} is not authorized to access this route`,
+        message: `User role ${req.user.role} is not authorized to access this route`,
       });
     }
     next();
