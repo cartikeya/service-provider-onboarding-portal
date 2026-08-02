@@ -6,7 +6,6 @@ const {
   getProviderProfile,
   updateProviderProfile,
 } = require("../controllers/providerController");
-
 const upload = require("../middlewares/uploadMiddleware");
 
 router.use(protect);

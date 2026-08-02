@@ -24,4 +24,12 @@ app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
+app.use((err, req, res, next) => {
+  console.error("SERVER ERROR CATCH-ALL:");
+  console.error(err);
+  res.status(500).json({
+    message: "Internal Server Error",
+    error: err.message || err,
+  });
+});
 app.listen(PORT, () => console.log(`$server running on localhost ${PORT}`));
