@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const User = require("./src/models/User");
 const PORT = 3000;
+const cors = require("cors");
+app.use(cors({ origin: "*" }));
 app.use(express.json());
 require("dotenv").config();
 const bcrypt = require("bcrypt");
