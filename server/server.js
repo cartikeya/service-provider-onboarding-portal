@@ -12,7 +12,10 @@ const providerRoutes = require("./src/routes/providerRoutes");
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MONGODB connected"))
-  .catch((err) => console.log(err));
+  .catch((err) => {
+    console.log(err.message);
+    console.log("Error:", JSON.stringify(err, null, 2));
+  });
 
 app.use("/api/auth", authRoutes);
 app.use("/api/provider", providerRoutes);
