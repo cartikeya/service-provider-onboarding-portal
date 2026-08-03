@@ -63,3 +63,74 @@ A full-stack web application designed to streamline the onboarding, document ver
     │   └── utils/               # jwt helpers, imagekit setup
     ├── server.js
     └── .env
+
+
+```
+## ⚙️ Environment Variables Setup
+
+### Backend Environment Variables (`server/.env`)
+Create a `.env` file inside the `server/` directory:
+
+```env
+PORT=5000
+MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/onboarding
+JWT_SECRET=your_jwt_secret_key
+GOOGLE_CLIENT_ID=your_google_client_id.apps.googleusercontent.com
+
+# ImageKit Configuration
+IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
+IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
+IMAGEKIT_URL_ENDPOINT=[https://ik.imagekit.io/your_imagekit_id](https://ik.imagekit.io/your_imagekit_id)
+```
+### Frontend Environment Variables (`client/.env`)
+Create a `.env` file inside the `client/` directory:
+
+```env
+VITE_API_BASE_URL=http://localhost:5000/api
+VITE_GOOGLE_CLIENT_ID=your_google_client_id.apps.googleusercontent.com
+```
+## 🚀 Getting Started
+
+### Prerequisites
+* Node.js (v18+)
+* MongoDB Atlas or Local MongoDB instance
+* ImageKit Account (for file/image storage)
+* Google Cloud Console OAuth 2.0 Credentials
+
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/cartikeyalavu/service-provider-onboarding.git](https://github.com/cartikeyalavu/service-provider-onboarding.git)
+cd service-provider-onboarding
+```
+
+### 2. Backend Setup
+```bash
+cd server
+npm install
+npm run dev
+```
+The server should start running on http://localhost:3000.
+
+### 3. Backend Setup
+```
+cd ../client
+npm install
+npm run dev
+```
+Open http://localhost:5173 in your browser.
+
+
+## 🔒 API Endpoints Overview
+
+| Method | Endpoint | Description | Access |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/auth/register` | Register a new user/provider | Public |
+| `POST` | `/api/auth/login` | Login user | Public |
+| `POST` | `/api/auth/google` | Google OAuth authentication | Public |
+| `GET` | `/api/provider/profile` | Get current provider profile | Provider |
+| `PUT` | `/api/provider/profile` | Update profile / upload documents | Provider |
+| `GET` | `/api/admin/providers` | Get all provider applications (filtered/searched) | Admin |
+| `PATCH` | `/api/admin/providers/:id/status` | Approve or reject provider with remarks | Admin |
+
+
+
