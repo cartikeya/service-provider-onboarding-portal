@@ -37,7 +37,7 @@ const login = async (req, res) => {
       return res.status(400).json({ message: "Incorrect password" });
     }
     const token = generateToken(user._id, user.role);
-    return res.status(201).json({ message: "Logged in", token });
+    return res.status(201).json({ message: "Logged in", token, user });
   } catch (error) {
     return res
       .status(500)
