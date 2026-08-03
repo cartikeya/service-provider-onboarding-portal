@@ -1,6 +1,6 @@
 import axios from "axios";
 const API = axios.create({
-  baseURL: "http://localhost:3000/api", // need to update when deployed
+  baseURL: import.meta.env.VITE_API_BASE_URL, // need to update when deployed
 });
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem("token");
