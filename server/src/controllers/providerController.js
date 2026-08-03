@@ -88,17 +88,17 @@ const updateProviderProfile = async (req, res) => {
       data: updatedProvider,
     });
   } catch (error) {
-    // Expose deep Cloudinary error reasons
+    // Expose deep error reasons
     console.error("Detailed Error Message:", error.message);
     console.error("HTTP Code:", error.http_code);
 
     if (error.error && error.error.message) {
-      console.error("Cloudinary Inner Error:", error.error.message);
+      console.error("Inner Error:", error.error.message);
     }
 
     res.status(500).json({
       message: "Failed to update profile",
-      error: error.message || "Cloudinary Upload Failed",
+      error: error.message || "Upload Failed",
     });
   }
 };
